@@ -142,8 +142,8 @@ export const Game: React.FC<GameProps> = ({ quizzes, onComplete }) => {
                                 disabled={isAnswered}
                                 onClick={() => setSelectedOption(option)}
                                 className={`w-full py-4 px-6 rounded-2xl font-semibold text-left border-2 transition-all flex items-center justify-between ${selectedOption === option
-                                        ? 'border-orange-500 bg-orange-50 text-orange-700 shadow-inner'
-                                        : 'border-slate-100 hover:border-orange-200 hover:bg-slate-50 text-slate-600'
+                                    ? 'border-orange-500 bg-orange-50 text-orange-700 shadow-inner'
+                                    : 'border-slate-100 hover:border-orange-200 hover:bg-slate-50 text-slate-600'
                                     } ${isAnswered && option === currentQuiz.answer ? '!border-green-500 !bg-green-50 !text-green-700' : ''}`}
                             >
                                 <span>{option}</span>
@@ -199,7 +199,7 @@ export const Game: React.FC<GameProps> = ({ quizzes, onComplete }) => {
                                 {currentQuiz.explanation.nuance && (
                                     <div className="bg-orange-500/10 p-3 rounded-xl border border-orange-100">
                                         <p className="text-[10px] uppercase font-bold text-orange-400 mb-1">어감 (Nuance)</p>
-                                        <p className="text-orange-700 font-medium text-sm italic">"{currentQuiz.explanation.nuance}"</p>
+                                        <p className="text-orange-700 font-medium text-sm italic">&quot;{currentQuiz.explanation.nuance}&quot;</p>
                                     </div>
                                 )}
                             </div>

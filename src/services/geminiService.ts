@@ -60,6 +60,7 @@ export class GeminiService {
             });
 
             const data = JSON.parse(response?.text || '[]');
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             return data.map((item: any, index: number) => {
                 // Post-process assembly answer to array if string
                 let finalAnswer = item.answer;

@@ -7,7 +7,7 @@ import PoolStatus from '@/components/PoolStatus';
 import DepositForm from '@/components/DepositForm';
 import WithdrawForm from '@/components/WithdrawForm';
 import TransactionLog from '@/components/TransactionLog';
-import { Transaction } from '@/types/database';
+import { Transaction, Restaurant } from '@/types/database';
 import { RESTAURANT_THEMES, RESTAURANTS, MOCK_TRANSACTIONS } from '@/lib/constants';
 import { Phone, MapPin, Clock } from 'lucide-react';
 
@@ -51,7 +51,7 @@ export default function RestaurantDetail() {
           setSelectedUser(parsed[0]); // 첫 번째 사용자를 대표로 설정 (withdaw 등에서 사용 가능성)
           return;
         }
-      } catch (e) { /* ignore */ }
+      } catch { /* ignore */ }
     }
 
     // 2. 단일 사용자 확인 (fallback)

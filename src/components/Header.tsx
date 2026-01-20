@@ -11,7 +11,7 @@ interface HeaderProps {
   rightElement?: React.ReactNode;
 }
 
-export default function Header({ title, showBack = false, rightElement }: HeaderProps) {
+export default function Header({ showBack = false, rightElement }: HeaderProps) {
   const router = useRouter();
 
   return (

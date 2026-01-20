@@ -6,7 +6,7 @@ import { Flashcards } from './Flashcards';
 import { INITIAL_QUIZZES } from './constants';
 import { AppMode, Quiz } from './types';
 import { GeminiService } from '@/services/geminiService';
-import { X, ExternalLink, RefreshCw } from 'lucide-react';
+import { X, RefreshCw } from 'lucide-react';
 
 interface MiniGameProps {
     onClose: () => void;
