@@ -188,6 +188,8 @@ export const RESTAURANT_THEMES: Record<string, {
 // 1인당 식대 기준
 export const BASE_ALLOWANCE = 10000;
 
+import { Transaction } from '@/types/database';
+
 // 50명 사용자 목록 (실제 데이터)
 export const DEFAULT_USERS = [
   '배소혜', '하민세', '이예진', '김재우', '허승준',
@@ -204,4 +206,4 @@ export const DEFAULT_USERS = [
 ];
 
 // 임시 데이터 (Supabase 연결 전 테스트용)
-export const MOCK_TRANSACTIONS = [];
+export const MOCK_TRANSACTIONS: Transaction[] = [];
