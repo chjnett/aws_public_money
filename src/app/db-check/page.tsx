@@ -52,7 +52,7 @@ export default function DBCheckPage() {
             setMessage(`연결 성공! (Status: ${httpStatus})`);
             setTableInfo(`restaurants 테이블 레코드 수: ${count}개`);
 
-        } catch (err: any) {
+        } catch (err: any) { // eslint-disable-line @typescript-eslint/no-explicit-any
             console.error('DB Check Error:', err);
             setStatus('error');
             setMessage(err.message || '연결 실패');
@@ -93,8 +93,8 @@ export default function DBCheckPage() {
                     <div className="space-y-3">
                         <h2 className="text-sm font-semibold text-brown-600">연결 테스트 결과</h2>
                         <div className={`p-4 rounded-xl border flex items-center gap-3 ${status === 'loading' ? 'bg-blue-50 border-blue-200 text-blue-700' :
-                                status === 'success' ? 'bg-green-50 border-green-200 text-green-700' :
-                                    'bg-red-50 border-red-200 text-red-700'
+                            status === 'success' ? 'bg-green-50 border-green-200 text-green-700' :
+                                'bg-red-50 border-red-200 text-red-700'
                             }`}>
                             {status === 'loading' && <div className="animate-spin text-xl">⏳</div>}
                             {status === 'success' && <CheckCircle size={24} />}

@@ -151,7 +151,7 @@ export default function Home() {
           fetchData();
           return;
         }
-      } catch (e) {
+      } catch {
         // ignore error
       }
     }
