@@ -92,7 +92,7 @@ export default function WithdrawForm({
     return (
       <button
         onClick={() => setIsOpen(true)}
-        className="w-full h-14 bg-gradient-to-r from-rose-500 to-orange-500 text-white font-semibold rounded-2xl flex items-center justify-center gap-2 hover:from-rose-600 hover:to-orange-600 active:from-rose-700 active:to-orange-700 transition-all shadow-lg shadow-rose-500/20"
+        className="w-full h-14 bg-white border border-rose-200 text-rose-600 font-bold rounded-2xl flex items-center justify-center gap-2 hover:bg-rose-50 active:bg-rose-100 transition-colors shadow-sm"
       >
         <ShoppingBag size={22} />
         공금 쓰기 (사이드 메뉴)

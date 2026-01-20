@@ -36,13 +36,29 @@ export default function RestaurantDetail() {
   const [transactions, setTransactions] = useState<Transaction[]>([]);
   const [loading, setLoading] = useState(true);
   const [useMockData, setUseMockData] = useState(!isSupabaseConfigured);
-  const [selectedUser, setSelectedUser] = useState<string>('');
+  const [selectedUser, setSelectedUser] = useState<string>(''); // 하위 호환
+  const [selectedUsers, setSelectedUsers] = useState<string[]>([]); // 다중 선택
 
   // localStorage에서 선택된 사용자 불러오기
   useEffect(() => {
+    // 1. 다중 사용자 확인
+    const savedUsersStr = localStorage.getItem('bobpool_users');
+    if (savedUsersStr) {
+      try {
+        const parsed = JSON.parse(savedUsersStr);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          setSelectedUsers(parsed);
+          setSelectedUser(parsed[0]); // 첫 번째 사용자를 대표로 설정 (withdaw 등에서 사용 가능성)
+          return;
+        }
+      } catch (e) { /* ignore */ }
+    }
+
+    // 2. 단일 사용자 확인 (fallback)
     const savedUser = localStorage.getItem('bobpool_user');
     if (savedUser) {
       setSelectedUser(savedUser);
+      setSelectedUsers([savedUser]);
     }
   }, []);
 
@@ -88,7 +104,7 @@ export default function RestaurantDetail() {
 
       const restaurantInfo = RESTAURANTS.find(r => r.id === restaurantId);
       setRestaurant({
-        ...restaurantData,
+        ...(restaurantData as Restaurant),
         phone: restaurantInfo?.phone,
         mapUrl: restaurantInfo?.mapUrl,
         hours: restaurantInfo?.hours,
@@ -217,6 +233,7 @@ export default function RestaurantDetail() {
           menus={restaurant.menus}
           useMockData={useMockData}
           defaultUserName={selectedUser}
+          defaultUserNames={selectedUsers} // 배열 전달
         />
 
         {/* 공금 사용 버튼/폼 */}
@@ -225,7 +242,7 @@ export default function RestaurantDetail() {
           currentPool={currentPool}
           onSuccess={fetchData}
           useMockData={useMockData}
-          defaultUserName={selectedUser}
+          defaultUserName={selectedUser} // 공금 사용은 보통 대표 1명이 하므로 유지 (또는 추후 다중 선택)
         />
 
         {/* 실시간 장부 */}

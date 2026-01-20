@@ -3,8 +3,10 @@
 @tailwind utilities;
 
 :root {
-  --background: #f8fafc;
-  --foreground: #1e293b;
+  --background: #FFFDF5;
+  /* cream-50 */
+  --foreground: #4E342E;
+  /* brown-800 */
 }
 
 body {
@@ -39,11 +41,15 @@ select:focus {
   box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.3);
 }
 
+
 /* 애니메이션 */
 @keyframes pulse-soft {
-  0%, 100% {
+
+  0%,
+  100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0.7;
   }
@@ -51,4 +57,119 @@ select:focus {
 
 .animate-pulse-soft {
   animation: pulse-soft 2s ease-in-out infinite;
+}
+
+/* Splash Screen Animations */
+@keyframes spoon-entry {
+  0% {
+    transform: translateY(100%) rotate(5deg);
+    opacity: 0;
+  }
+
+  100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rice-pop {
+
+  0%,
+  20% {
+    transform: translateY(0) scale(1, 1);
+  }
+
+  30% {
+    transform: translateY(5px) scale(1.1, 0.8);
+  }
+
+  45% {
+    transform: translateY(-120px) scale(0.9, 1.2);
+  }
+
+  60% {
+    transform: translateY(-130px) scale(1.05, 0.95);
+  }
+
+  75% {
+    transform: translateY(0) scale(0.9, 1.2);
+  }
+
+  85% {
+    transform: translateY(0) scale(1.1, 0.85);
+  }
+
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+}
+
+@keyframes wink {
+
+  0%,
+  48% {
+    transform: scaleY(1);
+  }
+
+  50%,
+  55% {
+    transform: scaleY(0.1);
+  }
+
+  57%,
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+@keyframes text-float {
+
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* 미니 밥풀 터짐 + 중력 낙하 효과 */
+@keyframes mini-burst-falling {
+  0% {
+    transform: translate(0, 0) rotate(0deg) scale(0);
+    opacity: 1;
+  }
+
+  25% {
+    /* 처음엔 지정된 방향으로 팡! 튀어오름 */
+    transform: translate(calc(var(--x) * 0.6), calc(var(--y) * 0.6)) rotate(calc(var(--r) * 0.25)) scale(1.1);
+    opacity: 1;
+  }
+
+  100% {
+    /* 이후 아래로 툭 떨어지며 사라짐 (중력 효과) */
+    transform: translate(var(--x), calc(var(--y) + 400px)) rotate(var(--r)) scale(0.7);
+    opacity: 0;
+  }
+}
+
+.animate-spoon {
+  animation: spoon-entry 1s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.animate-rice {
+  animation: rice-pop 2.5s cubic-bezier(0.45, 0, 0.55, 1) infinite;
+}
+
+.animate-wink {
+  animation: wink 2.5s ease-in-out infinite;
+}
+
+.animate-branding {
+  animation: text-float 2s ease-in-out infinite;
+}
+
+.mini-grain-burst {
+  animation: mini-burst-falling 1.2s cubic-bezier(0.15, 0.85, 0.35, 1) forwards;
 }

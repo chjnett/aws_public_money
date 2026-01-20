@@ -34,11 +34,11 @@ export default function RestaurantCard({
             <div>
               <h2 className={`text-lg font-bold ${theme.text}`}>{name}</h2>
               {category && (
-                <p className="text-xs text-slate-500">{category}</p>
+                <p className="text-xs text-brown-500">{category}</p>
               )}
             </div>
           </div>
-          <div className="flex items-center gap-1 text-slate-500">
+          <div className="flex items-center gap-1 text-brown-500">
             <Users size={18} />
             <span className="text-sm font-medium">{memberCount}명</span>
           </div>
@@ -48,7 +48,7 @@ export default function RestaurantCard({
           <div className="flex items-center gap-2">
             <Coins className={theme.text} size={22} />
             <div>
-              <p className="text-xs text-slate-500">현재 공금</p>
+              <p className="text-xs text-brown-500">현재 공금</p>
               <p className={`text-xl font-bold ${poolAmount >= 0 ? theme.text : 'text-red-600'}`}>
                 {poolAmount.toLocaleString()}원
               </p>
@@ -56,7 +56,7 @@ export default function RestaurantCard({
           </div>
 
           {hours && (
-            <div className="flex items-center gap-1 text-slate-400">
+            <div className="flex items-center gap-1 text-brown-400">
               <Clock size={14} />
               <span className="text-xs">{hours}</span>
             </div>
