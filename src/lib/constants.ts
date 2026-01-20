@@ -204,28 +204,4 @@ export const DEFAULT_USERS = [
 ];
 
 // 임시 데이터 (Supabase 연결 전 테스트용)
-export const MOCK_TRANSACTIONS = [
-  // 돈까스가 있는 풍경
-  { id: 1, restaurant_id: 1, user_name: '배소혜', amount: 9000, contribution: 1000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 2, restaurant_id: 1, user_name: '하민세', amount: 10000, contribution: 0, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 3, restaurant_id: 1, user_name: '이예진', amount: 11000, contribution: -1000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 4, restaurant_id: 1, user_name: '김재우', amount: 8500, contribution: 1500, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-
-  // 석봉이네 밥집
-  { id: 5, restaurant_id: 2, user_name: '허승준', amount: 8000, contribution: 2000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 6, restaurant_id: 2, user_name: 'Seunghyun Ryu', amount: 9000, contribution: 1000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 7, restaurant_id: 2, user_name: '황아름', amount: 8500, contribution: 1500, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 8, restaurant_id: 2, user_name: '김도현', amount: 5000, contribution: -5000, type: 'WITHDRAW' as const, created_at: new Date().toISOString() },
-
-  // 모닥치기 한라대점
-  { id: 9, restaurant_id: 3, user_name: '이상호', amount: 5000, contribution: 5000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 10, restaurant_id: 3, user_name: '최지은', amount: 4500, contribution: 5500, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 11, restaurant_id: 3, user_name: '민승규', amount: 7500, contribution: 2500, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 12, restaurant_id: 3, user_name: '강서영', amount: 9000, contribution: 1000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 13, restaurant_id: 3, user_name: '홍지윤', amount: 6000, contribution: -6000, type: 'WITHDRAW' as const, created_at: new Date().toISOString() },
-
-  // 귀빈반점
-  { id: 14, restaurant_id: 4, user_name: '이재후', amount: 7000, contribution: 3000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 15, restaurant_id: 4, user_name: '유채윤', amount: 8000, contribution: 2000, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-  { id: 16, restaurant_id: 4, user_name: '이지원', amount: 8500, contribution: 1500, type: 'DEPOSIT' as const, created_at: new Date().toISOString() },
-];
+export const MOCK_TRANSACTIONS = [];
