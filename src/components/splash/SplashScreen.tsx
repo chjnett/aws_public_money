@@ -1,6 +1,6 @@
 
-import React from 'react';
-import RiceGrain from './RiceGrain';
+import React, { useRef } from 'react';
+import RiceGrain, { RiceGrainHandle } from './RiceGrain';
 import Spoon from './Spoon';
 
 interface SplashScreenProps {
@@ -8,21 +8,38 @@ interface SplashScreenProps {
 }
 
 const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
+    const riceGrainRef = useRef<RiceGrainHandle>(null);
+    const [grains, setGrains] = React.useState<Array<{ left: string; top: string; transform: string; animation: string }>>([]);
+
+    React.useEffect(() => {
+        setGrains([...Array(12)].map(() => ({
+            left: `${Math.random() * 100}%`,
+            top: `${Math.random() * 100}%`,
+            transform: `rotate(${Math.random() * 360}deg)`,
+            animation: `text-float ${2 + Math.random() * 2}s ease-in-out infinite alternate`
+        })));
+    }, []);
+
+    const handleStart = () => {
+        // 밥풀 터지는 효과 실행
+        riceGrainRef.current?.triggerBurst();
+
+        // 밥풀 터지는 거 구경하게 1000ms 딜레이 후 이동
+        setTimeout(() => {
+            onStart();
+        }, 1000);
+    };
+
     return (
         <div className="flex flex-col items-center justify-center min-h-screen bg-[#FFFDF5] relative select-none overflow-hidden touch-none fixed inset-0 z-50">
 
             {/* Decorative falling grains */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none opacity-20">
-                {[...Array(12)].map((_, i) => (
+                {grains.map((style, i) => (
                     <div
                         key={i}
                         className="absolute bg-white rounded-full w-2 h-4"
-                        style={{
-                            left: `${Math.random() * 100}%`,
-                            top: `${Math.random() * 100}%`,
-                            transform: `rotate(${Math.random() * 360}deg)`,
-                            animation: `text-float ${2 + Math.random() * 2}s ease-in-out infinite alternate`
-                        }}
+                        style={style}
                     />
                 ))}
             </div>
@@ -36,7 +53,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
               - mr: Increased from 100px to 110px to perfectly align with the center of the large spoon head.
           */}
                     <div className="relative mb-[-80px] z-10 mr-[110px]">
-                        <RiceGrain />
+                        <RiceGrain ref={riceGrainRef} />
                     </div>
 
                     {/* Compact Stubby Wooden Spoon */}
@@ -55,7 +72,7 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
 
                 {/* Start Button */}
                 <button
-                    onClick={onStart}
+                    onClick={handleStart}
                     className="bg-[#8B4513] text-white px-8 py-4 rounded-2xl font-bold text-lg shadow-lg hover:bg-[#723a0f] hover:scale-105 active:scale-95 transition-all duration-200 animate-in fade-in slide-in-from-bottom-4 delay-300"
                 >
                     시작하기

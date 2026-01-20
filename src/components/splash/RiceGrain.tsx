@@ -1,5 +1,5 @@
 
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, forwardRef, useImperativeHandle } from 'react';
 
 interface MiniGrainData {
     id: number;
@@ -9,12 +9,14 @@ interface MiniGrainData {
     type: number; // 0: 행복, 1: 윙크, 2: 깜짝
 }
 
-const RiceGrain: React.FC = () => {
+export interface RiceGrainHandle {
+    triggerBurst: () => void;
+}
+
+const RiceGrain = forwardRef<RiceGrainHandle>((props, ref) => {
     const [miniGrains, setMiniGrains] = useState<MiniGrainData[]>([]);
 
-    const handleBurst = useCallback((e: React.MouseEvent | React.TouchEvent) => {
-        e.stopPropagation();
-
+    const handleBurst = useCallback(() => {
         const newGrains: MiniGrainData[] = [];
         const count = 14;
         const now = Date.now();
@@ -42,6 +44,15 @@ const RiceGrain: React.FC = () => {
             setMiniGrains((prev) => prev.filter(g => !newGrains.some(n => n.id === g.id)));
         }, 1200);
     }, []);
+
+    useImperativeHandle(ref, () => ({
+        triggerBurst: handleBurst
+    }));
+
+    const handleClick = (e: React.MouseEvent | React.TouchEvent) => {
+        e.stopPropagation();
+        handleBurst();
+    };
 
     const renderMiniFace = (type: number) => {
         const scale = "scale(0.7)";
@@ -124,11 +135,13 @@ const RiceGrain: React.FC = () => {
             {/* 3. 투명 클릭 레이어 */}
             <div
                 className="absolute bottom-0 left-1/2 -translate-x-1/2 w-40 h-[220px] cursor-pointer z-50 rounded-full"
-                onClick={handleBurst}
+                onClick={handleClick}
                 style={{ transform: 'translateX(-50%) translateY(30px)' }}
             ></div>
         </div>
     );
-};
+});
+
+RiceGrain.displayName = 'RiceGrain';
 
 export default RiceGrain;

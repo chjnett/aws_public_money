@@ -12,7 +12,7 @@ export class GeminiService {
     async generateQuizzes(count: number = 5): Promise<Quiz[]> {
         try {
             const response = await this.ai.models.generateContent({
-                model: 'gemini-2.0-flash-exp',
+                model: 'gemini-1.5-flash',
                 contents: `제주도 방언 학습 퀴즈를 ${count}개 생성해줘. 다음 규칙을 엄격히 준수할 것:
 
 1. 퀴즈 타입 라이브러리:

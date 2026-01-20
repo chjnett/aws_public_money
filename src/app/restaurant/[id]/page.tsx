@@ -181,7 +181,7 @@ export default function RestaurantDetail() {
 
       <main className="flex-1 p-4 space-y-4 pb-8">
         {/* 식당 정보 */}
-        <div className={`${theme.bg} rounded-xl p-4 space-y-2`}>
+        <div className={`${theme.bg} rounded-xl p-4 space-y-2 animate-fade-in-up opacity-0`}>
           {restaurant.category && (
             <p className="text-sm text-slate-600">{restaurant.category}</p>
           )}
@@ -219,41 +219,49 @@ export default function RestaurantDetail() {
         </div>
 
         {/* 공금 현황판 */}
-        <PoolStatus
-          restaurantName={restaurant.name}
-          poolAmount={currentPool}
-          totalDeposit={totalDeposit}
-          totalWithdraw={totalWithdraw}
-        />
+        <div className="animate-fade-in-up opacity-0 delay-100">
+          <PoolStatus
+            restaurantName={restaurant.name}
+            poolAmount={currentPool}
+            totalDeposit={totalDeposit}
+            totalWithdraw={totalWithdraw}
+          />
+        </div>
 
         {/* 식대 등록 폼 */}
-        <DepositForm
-          restaurantId={restaurantId}
-          onSuccess={fetchData}
-          menus={restaurant.menus}
-          useMockData={useMockData}
-          defaultUserName={selectedUser}
-          defaultUserNames={selectedUsers} // 배열 전달
-        />
+        <div className="animate-fade-in-up opacity-0 delay-200">
+          <DepositForm
+            restaurantId={restaurantId}
+            onSuccess={fetchData}
+            menus={restaurant.menus}
+            useMockData={useMockData}
+            defaultUserName={selectedUser}
+            defaultUserNames={selectedUsers} // 배열 전달
+          />
+        </div>
 
         {/* 공금 사용 버튼/폼 */}
-        <WithdrawForm
-          restaurantId={restaurantId}
-          currentPool={currentPool}
-          onSuccess={fetchData}
-          useMockData={useMockData}
-          defaultUserName={selectedUser} // 공금 사용은 보통 대표 1명이 하므로 유지 (또는 추후 다중 선택)
-        />
+        <div className="animate-fade-in-up opacity-0 delay-300">
+          <WithdrawForm
+            restaurantId={restaurantId}
+            currentPool={currentPool}
+            onSuccess={fetchData}
+            useMockData={useMockData}
+            defaultUserName={selectedUser} // 공금 사용은 보통 대표 1명이 하므로 유지 (또는 추후 다중 선택)
+          />
+        </div>
 
         {/* 실시간 장부 */}
-        <TransactionLog
-          transactions={transactions}
-          onUpdate={fetchData}
-          useMockData={useMockData}
-        />
+        <div className="animate-fade-in-up opacity-0 delay-400">
+          <TransactionLog
+            transactions={transactions}
+            onUpdate={fetchData}
+            useMockData={useMockData}
+          />
+        </div>
 
         {useMockData && (
-          <p className="text-xs text-amber-500 text-center">
+          <p className="text-xs text-amber-500 text-center animate-fade-in-up opacity-0 delay-500">
             * 테스트 데이터로 표시 중입니다 (저장되지 않음)
           </p>
         )}

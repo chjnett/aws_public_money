@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Plus, User, Receipt, X, Trash2 } from 'lucide-react';
+import { Plus, User, Receipt, X, Trash2, ChevronDown } from 'lucide-react';
 import { supabase } from '@/lib/supabase';
 import { DEFAULT_USERS, BASE_ALLOWANCE } from '@/lib/constants';
 import { TransactionInsert } from '@/types/database';
@@ -225,25 +225,28 @@ export default function DepositForm({
                 <div className="flex-1 space-y-2">
                   {/* 메뉴 선택/입력 */}
                   {menus && menus.length > 0 ? (
-                    <select
-                      value={item.menuName}
-                      onChange={(e) => handleItemChange(index, 'menuName', e.target.value)}
-                      className="w-full h-10 px-3 rounded-lg border border-cream-200 bg-cream-50 text-sm text-brown-700 focus:border-orange-400 focus:outline-none"
-                    >
-                      <option value="">메뉴 선택 (혹은 직접 입력)</option>
-                      {menus.map((menu) => (
-                        <option key={menu.name} value={menu.name}>
-                          {menu.name} - {menu.price.toLocaleString()}원
-                        </option>
-                      ))}
-                    </select>
+                    <div className="relative">
+                      <select
+                        value={item.menuName}
+                        onChange={(e) => handleItemChange(index, 'menuName', e.target.value)}
+                        className="w-full h-12 pl-4 pr-10 rounded-xl border border-cream-200 bg-white text-sm text-brown-700 focus:border-orange-400 focus:outline-none transition-shadow appearance-none cursor-pointer"
+                      >
+                        <option value="">메뉴 선택 (혹은 직접 입력)</option>
+                        {menus.map((menu) => (
+                          <option key={menu.name} value={menu.name}>
+                            {menu.name} - {menu.price.toLocaleString()}원
+                          </option>
+                        ))}
+                      </select>
+                      <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 text-brown-400 pointer-events-none" size={16} />
+                    </div>
                   ) : (
                     <input
                       type="text"
                       value={item.menuName}
                       onChange={(e) => handleItemChange(index, 'menuName', e.target.value)}
                       placeholder="메뉴명"
-                      className="w-full h-10 px-3 rounded-lg border border-cream-200 bg-cream-50 text-sm text-brown-700 focus:border-orange-400 focus:outline-none"
+                      className="w-full h-12 px-4 rounded-xl border border-cream-200 bg-white text-sm text-brown-700 focus:border-orange-400 focus:outline-none transition-shadow"
                     />
                   )}
 
@@ -254,9 +257,9 @@ export default function DepositForm({
                       value={item.price}
                       onChange={(e) => handleItemChange(index, 'price', e.target.value)}
                       placeholder="가격 (원)"
-                      className="w-full h-10 pl-3 pr-8 rounded-lg border border-cream-200 bg-white text-sm focus:border-orange-400 focus:outline-none"
+                      className="w-full h-12 pl-4 pr-10 rounded-xl border border-cream-200 bg-white text-sm focus:border-orange-400 focus:outline-none transition-shadow"
                     />
-                    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-brown-400 text-xs">원</span>
+                    <span className="absolute right-4 top-1/2 -translate-y-1/2 text-brown-400 text-sm">원</span>
                   </div>
                 </div>
 

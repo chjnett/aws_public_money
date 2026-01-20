@@ -270,13 +270,14 @@ export default function Home() {
 
             <div className="bg-white rounded-2xl border border-cream-200 divide-y divide-cream-100 max-h-[50vh] overflow-y-auto w-full">
               {filteredUsers.length > 0 ? (
-                filteredUsers.map((name) => {
+                filteredUsers.map((name, index) => {
                   const originalIndex = DEFAULT_USERS.indexOf(name) + 1;
                   return (
                     <button
                       key={name}
                       onClick={() => handleUserSelect(name)}
-                      className="w-full px-4 py-3 flex items-center justify-between hover:bg-cream-50 active:bg-cream-100 transition-colors text-left"
+                      className="w-full px-4 py-3 flex items-center justify-between hover:bg-cream-50 active:bg-cream-100 transition-colors text-left animate-fade-in-up opacity-0"
+                      style={{ animationDelay: `${index * 0.1}s` }}
                     >
                       <div className="flex items-center gap-3">
                         <span className="w-8 h-8 rounded-full bg-cream-100 flex items-center justify-center text-sm font-medium text-brown-500">
@@ -414,16 +415,21 @@ export default function Home() {
               </div>
             ) : (
               <div className="space-y-4">
-                {restaurants.map((restaurant) => (
-                  <RestaurantCard
+                {restaurants.map((restaurant, index) => (
+                  <div
                     key={restaurant.id}
-                    id={restaurant.id}
-                    name={restaurant.name}
-                    memberCount={restaurant.memberCount}
-                    poolAmount={restaurant.poolAmount}
-                    category={restaurant.category}
-                    hours={restaurant.hours}
-                  />
+                    className="animate-fade-in-up opacity-0"
+                    style={{ animationDelay: `${index * 0.15}s` }}
+                  >
+                    <RestaurantCard
+                      id={restaurant.id}
+                      name={restaurant.name}
+                      memberCount={restaurant.memberCount}
+                      poolAmount={restaurant.poolAmount}
+                      category={restaurant.category}
+                      hours={restaurant.hours}
+                    />
+                  </div>
                 ))}
               </div>
             )}

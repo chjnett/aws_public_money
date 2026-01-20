@@ -32,6 +32,7 @@ export default function Header({ title, showBack = false, rightElement }: Header
                 src="/header-icon.png"
                 alt="밥풀"
                 fill
+                sizes="56px"
                 className="object-contain"
               />
             </div>
