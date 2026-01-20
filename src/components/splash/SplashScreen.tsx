@@ -21,6 +21,10 @@ const SplashScreen: React.FC<SplashScreenProps> = ({ onStart }) => {
     }, []);
 
     const handleStart = () => {
+        // 효과음 재생
+        const audio = new Audio('/start-sound.mp3');
+        audio.play().catch(e => console.log('Audio play failed:', e));
+
         // 밥풀 터지는 효과 실행
         riceGrainRef.current?.triggerBurst();
 
